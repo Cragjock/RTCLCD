@@ -24,6 +24,8 @@ int main()
 	myLCD.lcd_clear();
 	myLCD.set_color(200,200,200);
 
+
+
     uint8_t* p_timekeep = new uint8_t[8];
     int okornot= myFP.device_read_block(TIMEKEEPSTART, 7, p_timekeep);
 
@@ -56,10 +58,12 @@ int main()
     cout<<"my time "<<myTime<<endl;
     cout<<"my date "<<myDate<<endl;
 
-    myLCD.lcd_write(myTime);
+    //myLCD.lcd_write(myTime);
+    myLCD << myTime;
     myLCD.lcd_set_cursor_address(0x40);
-    myLCD.lcd_write(myDate);
-    sleep(1);
+    //myLCD.lcd_write(myDate);
+    myLCD << myDate;
+    sleep(2);
     myLCD.lcd_clear();
 
     vector<char> vecnist(100);
@@ -81,21 +85,29 @@ int main()
 	//myLCD.lcd_write(NISTbuffer);
 	//sleep(1);
 	myLCD.lcd_set_cursor_address(0x00);
-	myLCD.lcd_write(line_3);
-	myLCD.lcd_write("Time");
+	//myLCD.lcd_write(line_3);
+	myLCD << line_3;
+	//myLCD.lcd_write("Time");
+	myLCD << "Time";
 	myLCD.lcd_set_cursor_address(0x40);
-	myLCD.lcd_write(line_1);
-	myLCD.lcd_write(line_2);
+	//myLCD.lcd_write(line_1);
+	myLCD << line_1;
+	//myLCD.lcd_write(line_2);
+	myLCD << line_2;
 	sleep(1);
 
 	myLCD.lcd_clear();
 	myLCD.lcd_set_cursor_address(0x00);
-	myLCD.lcd_write("RTC  ");
-	myLCD.lcd_write(myTime);
+	//myLCD.lcd_write("RTC  ");
+	myLCD << "RTC  ";
+	//myLCD.lcd_write(myTime);
+	myLCD << myTime;
 	myLCD.lcd_set_cursor_address(0x40);
-	myLCD.lcd_write("NIST ");
-	myLCD.lcd_write(line_2);
-    sleep(5);
+	//myLCD.lcd_write("NIST ");
+	myLCD << "NIST ";
+	//myLCD.lcd_write(line_2);
+	myLCD << line_2;
+    sleep(2);
 
 
     myFP.closei2c();

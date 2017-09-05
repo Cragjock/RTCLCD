@@ -156,6 +156,9 @@ enum myColor { RED = 2, GREEN, BLUE };
         template<typename T>
 		int lcd_write(T message);
 
+        template<typename T>
+        lcddisplay& operator<<(const T& data);
+
 
 
     private:
@@ -215,5 +218,14 @@ enum myColor { RED = 2, GREEN, BLUE };
 		return 0;
 
 	}
+	template<typename T>
+	lcddisplay& lcddisplay::operator<<(const T& data)
+	{
+        //this->lcd_write(data);
+        this->in << data << std::flush;
+
+	    return *this;
+	}
+
 
 #endif // MY_USB_LCD_CLASS_H
